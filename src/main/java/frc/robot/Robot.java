@@ -3,11 +3,12 @@
 // the WPILib BSD license file in the root directory of this project.
 
 package frc.robot;
-
+import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
-
+import com.kauailabs.navx.frc.AHRS;
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
  * each mode, as described in the TimedRobot documentation. If you change the name of this class or
@@ -16,7 +17,7 @@ import edu.wpi.first.wpilibj2.command.CommandScheduler;
  */
 public class Robot extends TimedRobot {
   private Command m_autonomousCommand;
-
+  AHRS ahrs;
   private RobotContainer m_robotContainer;
 
   /**
@@ -28,6 +29,23 @@ public class Robot extends TimedRobot {
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     // autonomous chooser on the dashboard.
     m_robotContainer = new RobotContainer();
+    try {
+      /***********************************************************************
+       * navX-MXP: - Communication via RoboRIO MXP (SPI, I2C) and USB. - See
+       * http://navx-mxp.kauailabs.com/guidance/selecting-an-interface.
+       * 
+       * navX-Micro: - Communication via I2C (RoboRIO MXP or Onboard) and USB. - See
+       * http://navx-micro.kauailabs.com/guidance/selecting-an-interface.
+       * 
+       * VMX-pi: - Communication via USB. - See
+       * https://vmx-pi.kauailabs.com/installation/roborio-installation/
+       * 
+       * Multiple navX-model devices on a single robot are supported.
+       ************************************************************************/
+      ahrs = new AHRS(SPI.Port.kMXP);
+  } catch (RuntimeException ex) {
+      DriverStation.reportError("Error instantiating navX MXP:  " + ex.getMessage(), true);
+  }
   }
 
   /**
@@ -73,7 +91,13 @@ public class Robot extends TimedRobot {
 
   /** This function is called periodically during autonomous. */
   @Override
-  public void autonomousPeriodic() {}
+  public void autonomousPeriodic() {
+    double pitchAngleDegrees = ahrs.getPitch();
+        double rollAngleDegrees = ahrs.getRoll();
+        System.out.println("pitch: " + pitchAngleDegrees + " Roll: " + rollAngleDegrees);
+        System.out.println("Alt: " + ahrs.getAltitude());
+        System.out.println("Dispalcement X: " + ahrs.getDisplacementX());
+  }
 
   @Override
   public void teleopInit() {
