@@ -95,7 +95,6 @@ public class Robot extends TimedRobot {
     double pitchAngleDegrees = ahrs.getPitch();
         double rollAngleDegrees = ahrs.getRoll();
         System.out.println("pitch: " + pitchAngleDegrees + " Roll: " + rollAngleDegrees);
-        System.out.println("Alt: " + ahrs.getAltitude());
         System.out.println("Dispalcement X: " + ahrs.getDisplacementX());
   }
 
