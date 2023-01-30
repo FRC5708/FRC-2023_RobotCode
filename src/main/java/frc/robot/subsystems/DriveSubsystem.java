@@ -13,8 +13,10 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 //Motor Controller imports
 import com.ctre.phoenix.motorcontrol.can.*;
+import com.ctre.phoenix.sensors.CANCoder;
 //import com.ctre.phoenix.motorcontrol.can.TalonFX;
 //import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenixpro.hardware.CANcoder;
 
 public class DriveSubsystem extends SubsystemBase {
   // The motors on the left side of the drive.
@@ -45,6 +47,8 @@ public class DriveSubsystem extends SubsystemBase {
           DriveConstants.kRightEncoderPorts[0],
           DriveConstants.kRightEncoderPorts[1],
           DriveConstants.kRightEncoderReversed);
+  
+  private final CANcoder testCaNcoder = new CANcoder(10);
 
   /** Creates a new DriveSubsystem. */
   public DriveSubsystem() {
@@ -66,6 +70,7 @@ public class DriveSubsystem extends SubsystemBase {
    */
   public void arcadeDrive(double fwd, double rot) {
     m_drive.arcadeDrive(fwd, rot);
+    System.out.println("Encoder: " + testCaNcoder.getPosition());
   }
 
   /** Resets the drive encoders to currently read a position of 0. */
