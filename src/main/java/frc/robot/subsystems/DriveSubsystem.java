@@ -31,6 +31,10 @@ public class DriveSubsystem extends SubsystemBase {
           new WPI_TalonFX(DriveConstants.kRightMotor1Port),
           new WPI_TalonFX(DriveConstants.kRightMotor2Port));
 
+  //WPI_TalonFX feedback = new WPI_TalonFX(3);
+  //feedback.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute, 0, 0);
+
+
   // The robot's drive
   private final DifferentialDrive m_drive = new DifferentialDrive(m_leftMotors, m_rightMotors);
 
