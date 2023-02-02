@@ -8,32 +8,30 @@ import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import frc.robot.Constants.DriveConstants;
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
-//import edu.wpi.first.wpilibj.motorcontrol.PWMSparkMax;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 //Motor Controller imports
 import com.ctre.phoenix.motorcontrol.can.*;
+import com.ctre.phoenix.motorcontrol.*;
 import com.ctre.phoenix.sensors.CANCoder;
-//import com.ctre.phoenix.motorcontrol.can.TalonFX;
-//import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenixpro.hardware.CANcoder;
 
 public class DriveSubsystem extends SubsystemBase {
   // The motors on the left side of the drive.
+  private WPI_TalonFX leftMotor1 = new WPI_TalonFX(DriveConstants.kLeftMotor1Port);
+  private WPI_TalonFX leftMotor2 = new WPI_TalonFX(DriveConstants.kLeftMotor2Port);
   private final MotorControllerGroup m_leftMotors =
       new MotorControllerGroup(
-          new WPI_TalonFX(DriveConstants.kLeftMotor1Port),
-          new WPI_TalonFX(DriveConstants.kLeftMotor2Port));
+          leftMotor1,
+          leftMotor2);
 
   // The motors on the right side of the drive.
+  private WPI_TalonFX rightMotor1 = new WPI_TalonFX(DriveConstants.kRightMotor1Port);
+  private WPI_TalonFX rightMotor2 = new WPI_TalonFX(DriveConstants.kRightMotor2Port);
   private final MotorControllerGroup m_rightMotors =
       new MotorControllerGroup(
-          new WPI_TalonFX(DriveConstants.kRightMotor1Port),
-          new WPI_TalonFX(DriveConstants.kRightMotor2Port));
-
-  //WPI_TalonFX feedback = new WPI_TalonFX(3);
-  //feedback.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute, 0, 0);
-
+          rightMotor1,
+          rightMotor2);
 
   // The robot's drive
   private final DifferentialDrive m_drive = new DifferentialDrive(m_leftMotors, m_rightMotors);
@@ -64,6 +62,16 @@ public class DriveSubsystem extends SubsystemBase {
     // Sets the distance per pulse for the encoders
     m_leftEncoder.setDistancePerPulse(DriveConstants.kEncoderDistancePerPulse);
     m_rightEncoder.setDistancePerPulse(DriveConstants.kEncoderDistancePerPulse);
+
+    //leftMotor1.configFactoryDefault();
+    //leftMotor1.setSensorPhase(false);
+    leftMotor1.configSelectedFeedbackSensor(FeedbackDevice.IntegratedSensor, 0, 0);
+    leftMotor2.configSelectedFeedbackSensor(FeedbackDevice.IntegratedSensor, 0, 0);
+    
+    rightMotor1.configSelectedFeedbackSensor(FeedbackDevice.IntegratedSensor, 0, 0);
+    rightMotor2.configSelectedFeedbackSensor(FeedbackDevice.IntegratedSensor, 0, 0);
+    
+    rightMotor2.setSelectedSensorPosition(0);
   }
 
   /**
@@ -74,7 +82,7 @@ public class DriveSubsystem extends SubsystemBase {
    */
   public void arcadeDrive(double fwd, double rot) {
     m_drive.arcadeDrive(fwd, rot);
-    System.out.println("Encoder: " + testCaNcoder.getPosition());
+    System.out.println("Right Motor Position: " + rightMotor1.getSelectedSensorPosition());   
   }
 
   /** Resets the drive encoders to currently read a position of 0. */
