@@ -8,12 +8,21 @@ import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import frc.robot.Constants.DriveConstants;
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
+<<<<<<< Updated upstream
+=======
+import edu.wpi.first.wpilibj.motorcontrol.*;
+>>>>>>> Stashed changes
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 //Motor Controller imports
 import com.ctre.phoenix.motorcontrol.can.*;
 import com.ctre.phoenix.motorcontrol.*;
 import com.ctre.phoenix.sensors.CANCoder;
+<<<<<<< Updated upstream
+=======
+import com.ctre.phoenix.motorcontrol.can.TalonFX;
+import com.ctre.phoenix.motorcontrol.ControlMode;
+>>>>>>> Stashed changes
 import com.ctre.phoenixpro.hardware.CANcoder;
 
 public class DriveSubsystem extends SubsystemBase {
@@ -30,9 +39,18 @@ public class DriveSubsystem extends SubsystemBase {
   private WPI_TalonFX rightMotor2 = new WPI_TalonFX(DriveConstants.kRightMotor2Port);
   private final MotorControllerGroup m_rightMotors =
       new MotorControllerGroup(
+<<<<<<< Updated upstream
           rightMotor1,
           rightMotor2);
 
+=======
+          new WPI_TalonFX(DriveConstants.kRightMotor1Port),
+          new WPI_TalonFX(DriveConstants.kRightMotor2Port));
+
+  WPI_TalonFX feedback = new WPI_TalonFX(3);
+ 
+  
+>>>>>>> Stashed changes
   // The robot's drive
   private final DifferentialDrive m_drive = new DifferentialDrive(m_leftMotors, m_rightMotors);
   
