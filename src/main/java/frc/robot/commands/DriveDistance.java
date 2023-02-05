@@ -6,6 +6,7 @@ package frc.robot.commands;
 
 import frc.robot.subsystems.DriveSubsystem;
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.Constants.DriveConstants;
 
 public class DriveDistance extends CommandBase {
   private final DriveSubsystem m_drive;
@@ -16,11 +17,11 @@ public class DriveDistance extends CommandBase {
    * Creates a new DriveDistance.
    *
    * @param inches The number of inches the robot will drive
-   * @param speed The speed at which the robot will drive
+   * @param speed The speed at which the robot will drive/
    * @param drive The drive subsystem on which this command will run
    */
   public DriveDistance(double inches, double speed, DriveSubsystem drive) {
-    m_distance = inches;
+    m_distance = inches * DriveConstants.ticksPerInch + drive.getRightEncoder().getSelectedSensorPosition();
     m_speed = speed;
     m_drive = drive;
     addRequirements(m_drive);
@@ -29,6 +30,7 @@ public class DriveDistance extends CommandBase {
   @Override
   public void initialize() {
     m_drive.resetEncoders();
+    System.out.println("~START~\n--Sensor Position: "+m_drive.getEncoderPosition());
     m_drive.arcadeDrive(m_speed, 0);
   }
 
@@ -40,6 +42,7 @@ public class DriveDistance extends CommandBase {
   @Override
   public void end(boolean interrupted) {
     m_drive.arcadeDrive(0, 0);
+    System.out.println("~END~\n--Sensor Position: "+m_drive.getEncoderPosition());
   }
 
   @Override

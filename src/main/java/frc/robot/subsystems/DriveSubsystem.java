@@ -35,23 +35,7 @@ public class DriveSubsystem extends SubsystemBase {
 
   // The robot's drive
   private final DifferentialDrive m_drive = new DifferentialDrive(m_leftMotors, m_rightMotors);
-
-  // The left-side drive encoder
-  private final Encoder m_leftEncoder =
-      new Encoder(
-          DriveConstants.kLeftEncoderPorts[0],
-          DriveConstants.kLeftEncoderPorts[1],
-          DriveConstants.kLeftEncoderReversed);
-
-  // The right-side drive encoder
-  private final Encoder m_rightEncoder =
-      new Encoder(
-          DriveConstants.kRightEncoderPorts[0],
-          DriveConstants.kRightEncoderPorts[1],
-          DriveConstants.kRightEncoderReversed);
   
-  private final CANcoder testCaNcoder = new CANcoder(10);
-
   /** Creates a new DriveSubsystem. */
   public DriveSubsystem() {
     // We need to invert one side of the drivetrain so that positive voltages
@@ -59,19 +43,11 @@ public class DriveSubsystem extends SubsystemBase {
     // gearbox is constructed, you might have to invert the left side instead.
     m_rightMotors.setInverted(true);
 
-    // Sets the distance per pulse for the encoders
-    m_leftEncoder.setDistancePerPulse(DriveConstants.kEncoderDistancePerPulse);
-    m_rightEncoder.setDistancePerPulse(DriveConstants.kEncoderDistancePerPulse);
-
-    //leftMotor1.configFactoryDefault();
-    //leftMotor1.setSensorPhase(false);
     leftMotor1.configSelectedFeedbackSensor(FeedbackDevice.IntegratedSensor, 0, 0);
     leftMotor2.configSelectedFeedbackSensor(FeedbackDevice.IntegratedSensor, 0, 0);
     
     rightMotor1.configSelectedFeedbackSensor(FeedbackDevice.IntegratedSensor, 0, 0);
     rightMotor2.configSelectedFeedbackSensor(FeedbackDevice.IntegratedSensor, 0, 0);
-    
-    rightMotor2.setSelectedSensorPosition(0);
   }
 
   /**
@@ -82,13 +58,23 @@ public class DriveSubsystem extends SubsystemBase {
    */
   public void arcadeDrive(double fwd, double rot) {
     m_drive.arcadeDrive(fwd, rot);
-    System.out.println("Right Motor Position: " + rightMotor1.getSelectedSensorPosition());   
-  }
+    }
 
   /** Resets the drive encoders to currently read a position of 0. */
   public void resetEncoders() {
-    m_leftEncoder.reset();
-    m_rightEncoder.reset();
+    leftMotor1.setSelectedSensorPosition(0);
+    leftMotor2.setSelectedSensorPosition(0);
+
+    rightMotor1.setSelectedSensorPosition(0);
+    rightMotor2.setSelectedSensorPosition(0);
+  }
+
+  public double getDistance(WPI_TalonFX encoder) {
+    return Math.abs(encoder.getSelectedSensorPosition() * DriveConstants.ticksPerInch);
+  }
+
+  public double getEncoderPosition(){
+    return rightMotor1.getSelectedSensorPosition();
   }
 
   /**
@@ -97,7 +83,8 @@ public class DriveSubsystem extends SubsystemBase {
    * @return the average of the TWO encoder readings
    */
   public double getAverageEncoderDistance() {
-    return (m_leftEncoder.getDistance() + m_rightEncoder.getDistance()) / 2.0;
+    return (getDistance(leftMotor1) + getDistance(leftMotor2)
+     + getDistance(rightMotor1) + getDistance(rightMotor2)) / 4.0;
   }
 
   /**
@@ -105,8 +92,8 @@ public class DriveSubsystem extends SubsystemBase {
    *
    * @return the left drive encoder
    */
-  public Encoder getLeftEncoder() {
-    return m_leftEncoder;
+  public WPI_TalonFX getLeftEncoder() {
+    return leftMotor1;
   }
 
   /**
@@ -114,8 +101,8 @@ public class DriveSubsystem extends SubsystemBase {
    *
    * @return the right drive encoder
    */
-  public Encoder getRightEncoder() {
-    return m_rightEncoder;
+  public WPI_TalonFX getRightEncoder() {
+    return rightMotor1;
   }
 
   /**

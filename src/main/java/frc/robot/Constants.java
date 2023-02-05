@@ -19,6 +19,8 @@ public final class Constants {
     public static final int kRightMotor1Port = 11;
     public static final int kRightMotor2Port = 12;
 
+    public static final double ticksPerInch = 1164.23;
+
     public static final int[] kLeftEncoderPorts = new int[] {0, 1};
     public static final int[] kRightEncoderPorts = new int[] {2, 3};
     public static final boolean kLeftEncoderReversed = false;
@@ -37,7 +39,7 @@ public final class Constants {
   }
 
   public static final class AutoConstants {
-    public static final double kAutoDriveDistanceInches = 60;
+    public static final double kAutoDriveDistanceInches = 36;
     public static final double kAutoBackupDistanceInches = 20;
     public static final double kAutoDriveSpeed = 0.5;
   }
