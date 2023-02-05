@@ -26,11 +26,6 @@ public final class Constants {
     public static final boolean kLeftEncoderReversed = false;
     public static final boolean kRightEncoderReversed = true;
 
-    public static final int kEncoderCPR = 1024;
-    public static final double kWheelDiameterInches = 6;
-    public static final double kEncoderDistancePerPulse =
-        // Assumes the encoders are directly mounted on the wheel shafts
-        (kWheelDiameterInches * Math.PI) / (double) kEncoderCPR;
   }
 
   public static final class HatchConstants {
@@ -39,7 +34,7 @@ public final class Constants {
   }
 
   public static final class AutoConstants {
-    public static final double kAutoDriveDistanceInches = 36;
+    public static final double kAutoDriveDistanceInches = 72;
     public static final double kAutoBackupDistanceInches = 20;
     public static final double kAutoDriveSpeed = 0.5;
   }

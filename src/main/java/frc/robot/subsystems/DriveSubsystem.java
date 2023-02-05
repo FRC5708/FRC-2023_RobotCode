@@ -70,7 +70,7 @@ public class DriveSubsystem extends SubsystemBase {
   }
 
   public double getDistance(WPI_TalonFX encoder) {
-    return Math.abs(encoder.getSelectedSensorPosition() * DriveConstants.ticksPerInch);
+    return Math.abs(encoder.getSelectedSensorPosition() / DriveConstants.ticksPerInch);
   }
 
   public double getEncoderPosition(){
@@ -83,8 +83,10 @@ public class DriveSubsystem extends SubsystemBase {
    * @return the average of the TWO encoder readings
    */
   public double getAverageEncoderDistance() {
-    return (getDistance(leftMotor1) + getDistance(leftMotor2)
+    double average = (getDistance(leftMotor1) + getDistance(leftMotor2)
      + getDistance(rightMotor1) + getDistance(rightMotor2)) / 4.0;
+    System.out.println("~~ Average Distance ~~\n" + average);
+    return average;
   }
 
   /**

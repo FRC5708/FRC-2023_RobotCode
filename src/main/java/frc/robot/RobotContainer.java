@@ -40,11 +40,8 @@ public class RobotContainer {
       new DriveDistance(
           AutoConstants.kAutoDriveDistanceInches, AutoConstants.kAutoDriveSpeed, m_robotDrive);
 
-  // A complex auto routine that drives forward, drops a hatch, and then drives backward.
-  private final Command m_complexAuto = new ComplexAuto(m_robotDrive, m_hatchSubsystem);
-
   // A chooser for autonomous commands
-  SendableChooser<Command> m_chooser = new SendableChooser<>();
+ // SendableChooser<Command> m_chooser = new SendableChooser<>();
 
   // The driver's controller
   XboxController m_driverController = new XboxController(OIConstants.kDriverControllerPort);
@@ -65,11 +62,10 @@ public class RobotContainer {
             () -> -m_driverController.getRightX()));
 
     // Add commands to the autonomous command chooser
-    m_chooser.setDefaultOption("Simple Auto", m_simpleAuto);
-    m_chooser.addOption("Complex Auto", m_complexAuto);
+   // m_chooser.setDefaultOption("Simple Auto", m_simpleAuto);
 
     // Put the chooser on the dashboard
-    Shuffleboard.getTab("Autonomous").add(m_chooser);
+   // Shuffleboard.getTab("Autonomous").add(m_chooser);
   }
 
   /**
@@ -94,7 +90,10 @@ public class RobotContainer {
    *
    * @return the command to run in autonomous
    */
+
   public Command getAutonomousCommand() {
-    return m_chooser.getSelected();
+    //return m_chooser.getSelected();
+    return m_simpleAuto;
   }
+  
 }

@@ -21,7 +21,7 @@ public class DriveDistance extends CommandBase {
    * @param drive The drive subsystem on which this command will run
    */
   public DriveDistance(double inches, double speed, DriveSubsystem drive) {
-    m_distance = inches * DriveConstants.ticksPerInch + drive.getRightEncoder().getSelectedSensorPosition();
+    m_distance = inches;
     m_speed = speed;
     m_drive = drive;
     addRequirements(m_drive);
