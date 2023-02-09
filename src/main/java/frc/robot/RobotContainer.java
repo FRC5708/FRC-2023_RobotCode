@@ -93,7 +93,8 @@ public class RobotContainer {
 
   public Command getAutonomousCommand() {
     //return m_chooser.getSelected();
-    return m_simpleAuto;
+    return new ComplexAuto(m_robotDrive, m_hatchSubsystem);
+    
   }
   
 }

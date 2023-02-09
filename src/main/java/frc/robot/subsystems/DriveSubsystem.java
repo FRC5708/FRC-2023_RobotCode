@@ -85,7 +85,6 @@ public class DriveSubsystem extends SubsystemBase {
   public double getAverageEncoderDistance() {
     double average = (getDistance(leftMotor1) + getDistance(leftMotor2)
      + getDistance(rightMotor1) + getDistance(rightMotor2)) / 4.0;
-    System.out.println("~~ Average Distance ~~\n" + average);
     return average;
   }
 

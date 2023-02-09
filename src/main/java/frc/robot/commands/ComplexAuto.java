@@ -18,10 +18,14 @@ public class ComplexAuto extends SequentialCommandGroup {
    * @param hatch The hatch subsystem this command will run on
    */
   public ComplexAuto(DriveSubsystem drive, HatchSubsystem hatch) {
+    System.out.println("***Complex Auto start***");
     addCommands(
         // Drive forward the specified distance
+       
+       
         new DriveDistance(
-            AutoConstants.kAutoDriveDistanceInches, AutoConstants.kAutoDriveSpeed, drive)
+            AutoConstants.kAutoDriveDistanceInches, AutoConstants.kAutoDriveSpeed, drive),
+        new DriveDistance(48,AutoConstants.kAutoDriveSpeed,drive)    
     );
   }
 }
