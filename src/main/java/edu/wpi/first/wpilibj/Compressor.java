@@ -28,6 +28,12 @@ public class Compressor extends SensorBase implements LiveWindowSendable {
   public boolean enabled = true;
   public boolean closedLoop = true;
   public boolean pressureSwitchTriggered = false;
+
+  DigitalInput limit = new DigitalInput(0 );
+
+  if(!limit.get()) {
+    System.out.println("Limit pressed");
+  }
   /**
    * Create an instance of the Compressor
    *$
