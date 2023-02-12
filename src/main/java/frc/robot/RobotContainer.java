@@ -65,6 +65,7 @@ public class RobotContainer {
             () -> -m_driverController.getRightX()));
     // Add commands to the autonomous command chooser
     chooser.setDefaultOption("Simple Auto", simpleAuto);
+    chooser.addOption("Complex Auto", new ComplexAuto(m_robotDrive));
 
     // Put the chooser on the dashboard
    SmartDashboard.putData("Auton Code", chooser);

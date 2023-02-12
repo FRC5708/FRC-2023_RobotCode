@@ -127,4 +127,12 @@ public class DriveSubsystem extends SubsystemBase {
   public float getTilt(){
     return navX.getPitch();
   }
+
+  public double getSpin(){
+    return navX.getAngle();
+  }
+
+  public void resetSpin(){
+    navX.reset();
+  }
 }
