@@ -9,6 +9,7 @@ import static edu.wpi.first.wpilibj.XboxController.Button;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.Constants.AutoConstants;
 import frc.robot.Constants.OIConstants;
+import frc.robot.commands.CheckSensor;
 import frc.robot.commands.ComplexAuto;
 import frc.robot.commands.DefaultDrive;
 import frc.robot.commands.DriveDistance;
@@ -16,7 +17,7 @@ import frc.robot.commands.GrabHatch;
 import frc.robot.commands.HalveDriveSpeed;
 import frc.robot.commands.ReleaseHatch;
 import frc.robot.subsystems.DriveSubsystem;
-import frc.robot.subsystems.HatchSubsystem;
+import frc.robot.subsystems.WeaponSubsystem;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -32,7 +33,7 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 public class RobotContainer {
   // The robot's subsystems
   private final DriveSubsystem m_robotDrive = new DriveSubsystem();
-  private final HatchSubsystem m_hatchSubsystem = new HatchSubsystem();
+  private final WeaponSubsystem weaponSubsystem = new WeaponSubsystem();
   
   // The autonomous routines
 
@@ -77,10 +78,7 @@ public class RobotContainer {
    */
   private void configureButtonBindings() {
     // Grab the hatch when the 'A' button is pressed.
-    new JoystickButton(m_driverController, Button.kA.value).onTrue(new GrabHatch(m_hatchSubsystem));
-    // Release the hatch when the 'B' button is pressed.
-    new JoystickButton(m_driverController, Button.kB.value)
-        .onTrue(new ReleaseHatch(m_hatchSubsystem));
+    new JoystickButton(m_driverController, Button.kA.value).onTrue(new CheckSensor(weaponSubsystem));
     // While holding the shoulder button, drive at half speed
     new JoystickButton(m_driverController, Button.kRightBumper.value)
         .whileTrue(new HalveDriveSpeed(m_robotDrive));
