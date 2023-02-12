@@ -28,12 +28,10 @@ public class Compressor extends SensorBase implements LiveWindowSendable {
   public boolean enabled = true;
   public boolean closedLoop = true;
   public boolean pressureSwitchTriggered = false;
+DigitalInput limitswitch;
 
-  DigitalInput limit = new DigitalInput(0 );
-
-  if(!limit.get()) {
-    System.out.println("Limit pressed");
-  }
+  
+  
   /**
    * Create an instance of the Compressor
    *$
@@ -52,6 +50,15 @@ public class Compressor extends SensorBase implements LiveWindowSendable {
    */
   public Compressor() {
     initCompressor(getDefaultSolenoidModule());
+
+    limitswitch = new DigitalInput(0);
+  
+    if (limitswitch.get()) {
+      System.out.println("Photoeye Made");
+        } 
+        else{
+          System.out.println("Photoeye Not Made");
+        }
   }
 
   private int getDefaultSolenoidModule() {
