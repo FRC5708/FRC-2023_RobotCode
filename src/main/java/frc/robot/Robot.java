@@ -4,12 +4,11 @@
 
 package frc.robot;
 import edu.wpi.first.wpilibj.DriverStation;
-import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
-import com.kauailabs.navx.frc.AHRS;
+
 
 
 /**
@@ -20,7 +19,6 @@ import com.kauailabs.navx.frc.AHRS;
  */
 public class Robot extends TimedRobot {
   private Command m_autonomousCommand;
-  AHRS ahrs;
   private RobotContainer m_robotContainer;
   /**
    * This function is run when the robot is first started up and should be used for any
@@ -44,7 +42,6 @@ public class Robot extends TimedRobot {
        * 
        * Multiple navX-model devices on a single robot are supported.
        ************************************************************************/
-      ahrs = new AHRS(SPI.Port.kMXP);
   } catch (RuntimeException ex) {
       DriverStation.reportError("Error instantiating navX MXP:  " + ex.getMessage(), true);
   }

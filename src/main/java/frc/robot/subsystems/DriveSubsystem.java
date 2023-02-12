@@ -16,6 +16,10 @@ import com.ctre.phoenix.motorcontrol.*;
 import com.ctre.phoenix.sensors.CANCoder;
 import com.ctre.phoenixpro.hardware.CANcoder;
 
+//NavX
+import edu.wpi.first.wpilibj.SPI;
+import com.kauailabs.navx.frc.AHRS;
+
 public class DriveSubsystem extends SubsystemBase {
   // The motors on the left side of the drive.
   private WPI_TalonFX leftMotor1 = new WPI_TalonFX(DriveConstants.kLeftMotor1Port);
@@ -36,6 +40,9 @@ public class DriveSubsystem extends SubsystemBase {
   // The robot's drive
   private final DifferentialDrive m_drive = new DifferentialDrive(m_leftMotors, m_rightMotors);
   
+  //NavX
+  private AHRS navX;
+
   /** Creates a new DriveSubsystem. */
   public DriveSubsystem() {
     // We need to invert one side of the drivetrain so that positive voltages
@@ -48,6 +55,8 @@ public class DriveSubsystem extends SubsystemBase {
     
     rightMotor1.configSelectedFeedbackSensor(FeedbackDevice.IntegratedSensor, 0, 0);
     rightMotor2.configSelectedFeedbackSensor(FeedbackDevice.IntegratedSensor, 0, 0);
+
+    navX = new AHRS(SPI.Port.kMXP);
   }
 
   /**
@@ -113,5 +122,9 @@ public class DriveSubsystem extends SubsystemBase {
    */
   public void setMaxOutput(double maxOutput) {
     m_drive.setMaxOutput(maxOutput);
+  }
+
+  public float getTilt(){
+    return navX.getPitch();
   }
 }

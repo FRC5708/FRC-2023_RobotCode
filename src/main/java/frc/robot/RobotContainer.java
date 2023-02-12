@@ -10,6 +10,7 @@ import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.Constants.AutoConstants;
 import frc.robot.Constants.OIConstants;
 import frc.robot.commands.CheckSensor;
+import frc.robot.commands.CheckTilt;
 import frc.robot.commands.ComplexAuto;
 import frc.robot.commands.DefaultDrive;
 import frc.robot.commands.DriveDistance;
@@ -77,8 +78,10 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    // Grab the hatch when the 'A' button is pressed.
+    // Says if sensor is blocked when the 'A' button is pressed.
     new JoystickButton(m_driverController, Button.kA.value).onTrue(new CheckSensor(weaponSubsystem));
+    //Gives tilt angle when the 'B' button is pressed.
+    new JoystickButton(m_driverController, Button.kB.value).onTrue(new CheckTilt(m_robotDrive));
     // While holding the shoulder button, drive at half speed
     new JoystickButton(m_driverController, Button.kRightBumper.value)
         .whileTrue(new HalveDriveSpeed(m_robotDrive));
