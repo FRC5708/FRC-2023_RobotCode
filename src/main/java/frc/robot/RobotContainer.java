@@ -19,6 +19,7 @@ import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.HatchSubsystem;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
@@ -32,16 +33,16 @@ public class RobotContainer {
   // The robot's subsystems
   private final DriveSubsystem m_robotDrive = new DriveSubsystem();
   private final HatchSubsystem m_hatchSubsystem = new HatchSubsystem();
-
+  
   // The autonomous routines
 
   // A simple auto routine that drives forward a specified distance, and then stops.
-  private final Command m_simpleAuto =
+  private final Command simpleAuto =
       new DriveDistance(
           AutoConstants.kAutoDriveDistanceInches, AutoConstants.kAutoDriveSpeed, m_robotDrive);
 
   // A chooser for autonomous commands
- // SendableChooser<Command> m_chooser = new SendableChooser<>();
+  SendableChooser<Command> chooser = new SendableChooser<>();
 
   // The driver's controller
   XboxController m_driverController = new XboxController(OIConstants.kDriverControllerPort);
@@ -60,12 +61,12 @@ public class RobotContainer {
             m_robotDrive,
             () -> -m_driverController.getLeftY(),
             () -> -m_driverController.getRightX()));
-
     // Add commands to the autonomous command chooser
-   // m_chooser.setDefaultOption("Simple Auto", m_simpleAuto);
+    chooser.setDefaultOption("Simple Auto", simpleAuto);
 
     // Put the chooser on the dashboard
-   // Shuffleboard.getTab("Autonomous").add(m_chooser);
+   SmartDashboard.putData("Auton Code", chooser);
+
   }
 
   /**
@@ -92,8 +93,8 @@ public class RobotContainer {
    */
 
   public Command getAutonomousCommand() {
-    //return m_chooser.getSelected();
-    return new ComplexAuto(m_robotDrive, m_hatchSubsystem);
+    return chooser.getSelected();
+    //return new ComplexAuto(m_robotDrive, m_hatchSubsystem);
     
   }
   
