@@ -47,7 +47,8 @@ public class RobotContainer {
   SendableChooser<Command> chooser = new SendableChooser<>();
 
   // The driver's controller
-  XboxController m_driverController = new XboxController(OIConstants.kDriverControllerPort);
+  XboxController m_driverController = new XboxController(OIConstants.kDriverControllerPortDrive);
+  XboxController m_weaponController = new XboxController(OIConstants.kDriverControllerPortWeapon);
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
@@ -86,6 +87,7 @@ public class RobotContainer {
     // While holding the shoulder button, drive at half speed
     new JoystickButton(m_driverController, Button.kRightBumper.value)
         .whileTrue(new HalveDriveSpeed(m_robotDrive));
+    //new JoystickButton(m_driverController, )
   }
 
   /**
