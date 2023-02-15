@@ -61,7 +61,7 @@ public class RobotContainer {
         // hand, and turning controlled by the right.
         new DefaultDrive(
             m_robotDrive,
-            () -> -m_driverController.getLeftY(),
+            () -> (m_driverController.getLeftTriggerAxis()*-1)+m_driverController.getRightTriggerAxis(),
             () -> -m_driverController.getRightX()));
     // Add commands to the autonomous command chooser
     chooser.setDefaultOption("Simple Auto", simpleAuto);
