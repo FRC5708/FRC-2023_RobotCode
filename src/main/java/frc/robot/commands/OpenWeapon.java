@@ -4,12 +4,12 @@
 
 package frc.robot.commands;
 
-import frc.robot.subsystems.HatchSubsystem;
+import frc.robot.subsystems.WeaponSubsystem;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 
 /** A command that releases the hatch. */
-public class ReleaseHatch extends InstantCommand {
-  public ReleaseHatch(HatchSubsystem subsystem) {
-    super(subsystem::releaseHatch, subsystem);
+public class OpenWeapon extends InstantCommand {
+  public OpenWeapon(WeaponSubsystem subsystem) {
+    super(subsystem::openWeapon, subsystem);
   }
 }

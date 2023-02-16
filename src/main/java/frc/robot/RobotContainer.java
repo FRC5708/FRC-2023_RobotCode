@@ -14,9 +14,9 @@ import frc.robot.commands.CheckTilt;
 import frc.robot.commands.ComplexAuto;
 import frc.robot.commands.DefaultDrive;
 import frc.robot.commands.DriveDistance;
-import frc.robot.commands.GrabHatch;
 import frc.robot.commands.HalveDriveSpeed;
-import frc.robot.commands.ReleaseHatch;
+import frc.robot.commands.OpenWeapon;
+import frc.robot.commands.CloseWeapon;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.WeaponSubsystem;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
@@ -24,7 +24,6 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
-
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
  * "declarative" paradigm, very little robot logic should actually be handled in the {@link Robot}
@@ -88,6 +87,12 @@ public class RobotContainer {
     new JoystickButton(m_driverController, Button.kRightBumper.value)
         .whileTrue(new HalveDriveSpeed(m_robotDrive));
     //new JoystickButton(m_driverController, )
+
+    //when right bumper clicked, opens pneumatics
+    new JoystickButton(m_weaponController, Button.kRightBumper.value).onTrue(new OpenWeapon(weaponSubsystem));
+
+    //when left bumper clicked, closes pneumatics
+    new JoystickButton(m_weaponController, Button.kLeftBumper.value).onTrue(new CloseWeapon(weaponSubsystem));
   }
 
   /**

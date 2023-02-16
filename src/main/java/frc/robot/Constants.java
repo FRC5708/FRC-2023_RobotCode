@@ -28,9 +28,9 @@ public final class Constants {
 
   }
 
-  public static final class HatchConstants {
-    public static final int kHatchSolenoidModule = 0;
-    public static final int[] kHatchSolenoidPorts = new int[] {0, 1};
+  public static final class WeaponConstants {
+    public static final int kWeaponSolenoidModule = 0;
+    public static final int[] kWeaponSolenoidPorts = new int[] {0, 1};
   }
 
   public static final class AutoConstants {
