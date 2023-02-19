@@ -88,11 +88,14 @@ public class RobotContainer {
         .whileTrue(new HalveDriveSpeed(m_robotDrive));
     //new JoystickButton(m_driverController, )
 
+    //Controller mappings for weapons controller
     //when right bumper clicked, opens pneumatics
-    new JoystickButton(m_weaponController, Button.kRightBumper.value).onTrue(new OpenWeapon(weaponSubsystem));
+    new JoystickButton(m_weaponController, Button.kRightBumper.value)
+    .onTrue(new OpenWeapon(weaponSubsystem));
 
     //when left bumper clicked, closes pneumatics
-    new JoystickButton(m_weaponController, Button.kLeftBumper.value).onTrue(new CloseWeapon(weaponSubsystem));
+    new JoystickButton(m_weaponController, Button.kLeftBumper.value)
+    .onTrue(new CloseWeapon(weaponSubsystem));
   }
 
   /**
