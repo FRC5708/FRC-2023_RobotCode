@@ -14,9 +14,9 @@ import frc.robot.commands.CheckTilt;
 import frc.robot.commands.ComplexAuto;
 import frc.robot.commands.DefaultDrive;
 import frc.robot.commands.DriveDistance;
-import frc.robot.commands.GrabHatch;
 import frc.robot.commands.HalveDriveSpeed;
-import frc.robot.commands.ReleaseHatch;
+import frc.robot.command.OpenWeapon;
+import frc.robot.command.CloseWeapon;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.WeaponSubsystem;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
@@ -90,6 +90,12 @@ public class RobotContainer {
     //new JoystickButton(m_driverController, )
 
     
+    new JoystickButton(m_weaponController, Button.kRightBumper.value)
+    .onTrue(new OpenWeapon(weaponSubsystem));
+
+    new JoystickButton(m_weaponController, Button.kLeftBumper.value)
+    .onTrue(new CloseWeapon(weaponSubsystem));
+
   }
 
   /**
