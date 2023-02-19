@@ -4,6 +4,7 @@ package frc.robot.subsystems;
 
 import static edu.wpi.first.wpilibj.DoubleSolenoid.Value.kForward;
 import static edu.wpi.first.wpilibj.DoubleSolenoid.Value.kReverse;
+import static edu.wpi.first.wpilibj.DoubleSolenoid.Value.kOff;
 
 import edu.wpi.first.wpilibj.*;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -26,6 +27,11 @@ public class WeaponSubsystem extends SubsystemBase {
     //will set pneumatics forward and close
     public void closeWeapon() {
         m_weaponSolenoid.set(kForward);
+    }
+
+    //will have pneaumatics shut off, not open or closed
+    public void offWeapon() {
+        m_weaponSolenoid.set(kOff);
     }
     
 
