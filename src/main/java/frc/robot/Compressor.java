@@ -5,7 +5,7 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package edu.wpi.first.wpilibj;
+package frc.robot;
 
 //import edu.wpi.first.wpilibj.livewindow.*;
 //import edu.wpi.first.wpilibj.tables.ITable;
@@ -23,12 +23,12 @@ package edu.wpi.first.wpilibj;
  * closed loop control, thereby stopping the compressor from operating.
  */
 public class Compressor {
-  private long m_pcm;
+  //private long m_pcm;
 
   public boolean enabled = true;
   public boolean closedLoop = true;
   public boolean pressureSwitchTriggered = false;
-DigitalInput limitswitch;
+  //DigitalInput limitswitch;
 
   
   
@@ -51,6 +51,7 @@ DigitalInput limitswitch;
   public Compressor() {
     initCompressor(getDefaultSolenoidModule());
 
+    /* 
     limitswitch = new DigitalInput(0);
   
     if (limitswitch.get()) {
@@ -59,6 +60,7 @@ DigitalInput limitswitch;
         else{
           System.out.println("Photoeye Not Made");
         }
+    */
   }
 
   private int getDefaultSolenoidModule() {
@@ -108,15 +110,7 @@ DigitalInput limitswitch;
     return !pressureSwitchTriggered;
   }
 
-  /**
-   * Get the current being used by the compressor
-   *$
-   * @return current consumed in amps for the compressor motor
-   */
-  public float getCompressorCurrent() {
-	  //TODO not implemented
-	  return 1;
-  }
+  
 
   /**
    * Set the PCM in closed loop control mode
@@ -136,74 +130,6 @@ DigitalInput limitswitch;
    */
   public boolean getClosedLoopControl() {
     return closedLoop;
-  }
-
-  /**
-   * @return true if PCM is in fault state : Compressor Drive is disabled due to
-   *         compressor current being too high.
-   */
-  public boolean getCompressorCurrentTooHighFault() {
-	  //TODO not implemented
-	  return false;
-  }
-
-  /**
-   * @return true if PCM sticky fault is set : Compressor Drive is disabled due
-   *         to compressor current being too high.
-   */
-  public boolean getCompressorCurrentTooHighStickyFault() {
-	  //TODO not implemented
-	  return false;
-  }
-
-  /**
-   * @return true if PCM sticky fault is set : Compressor output appears to be
-   *         shorted.
-   */
-  public boolean getCompressorShortedStickyFault() {
-	  //TODO not implemented
-	  return false;
-  }
-
-  /**
-   * @return true if PCM is in fault state : Compressor output appears to be
-   *         shorted.
-   */
-  public boolean getCompressorShortedFault() {
-	  //TODO not implemented
-	  return false;
-  }
-
-  /**
-   * @return true if PCM sticky fault is set : Compressor does not appear to be
-   *         wired, i.e. compressor is not drawing enough current.
-   */
-  public boolean getCompressorNotConnectedStickyFault() {
-	  //TODO not implemented
-	  return false;
-  }
-
-  /**
-   * @return true if PCM is in fault state : Compressor does not appear to be
-   *         wired, i.e. compressor is not drawing enough current.
-   */
-  public boolean getCompressorNotConnectedFault() {
-	  //TODO not implemented
-	  return false;
-  }
-
-  /**
-   * Clear ALL sticky faults inside PCM that Compressor is wired to.
-   *
-   * If a sticky fault is set, then it will be persistently cleared. Compressor
-   * drive maybe momentarily disable while flags are being cleared. Care should
-   * be taken to not call this too frequently, otherwise normal compressor
-   * functionality may be prevented.
-   *
-   * If no sticky faults are set then this call will have no effect.
-   */
-  public void clearAllPCMStickyFaults() {
-	  //TODO not implemented
   }
 
  // @Override

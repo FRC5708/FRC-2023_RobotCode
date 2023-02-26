@@ -11,5 +11,6 @@ import edu.wpi.first.wpilibj2.command.InstantCommand;
 public class OpenWeapon extends InstantCommand {
   public OpenWeapon(WeaponSubsystem subsystem) {
     super(subsystem::openWeapon, subsystem);
+    System.out.println("--Close Weapon");
   }
 }

@@ -19,6 +19,8 @@ public class CloseWeapon extends CommandBase {
   public CloseWeapon(WeaponSubsystem subsystem) {
     m_weaponSubsystem = subsystem;
     addRequirements(m_weaponSubsystem);
+
+    System.out.println("--Close Weapon");
   }
 
   @Override

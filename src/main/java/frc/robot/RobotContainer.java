@@ -6,6 +6,7 @@ package frc.robot;
 
 import static edu.wpi.first.wpilibj.XboxController.Button;
 
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.Constants.AutoConstants;
 import frc.robot.Constants.OIConstants;
@@ -19,7 +20,7 @@ import frc.robot.commands.OpenWeapon;
 import frc.robot.commands.CloseWeapon;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.WeaponSubsystem;
-import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
+//import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -63,7 +64,10 @@ public class RobotContainer {
         new DefaultDrive(
             m_robotDrive,
             () -> (m_driverController.getLeftTriggerAxis()*-1)+m_driverController.getRightTriggerAxis(),
-            () -> -m_driverController.getRightX()));
+            () -> -m_driverController.getRightX(),
+            weaponSubsystem,
+            () -> m_weaponController.getLeftY(),
+            () -> m_weaponController.getRightY()));
     // Add commands to the autonomous command chooser
     chooser.setDefaultOption("Simple Auto", simpleAuto);
     chooser.addOption("Complex Auto", new ComplexAuto(m_robotDrive));
@@ -95,7 +99,6 @@ public class RobotContainer {
 
     new JoystickButton(m_weaponController, Button.kLeftBumper.value)
     .onTrue(new CloseWeapon(weaponSubsystem));
-
   }
 
   /**
