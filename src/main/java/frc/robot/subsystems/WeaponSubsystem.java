@@ -12,8 +12,8 @@ import frc.robot.Constants.WeaponConstants;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
-
 public class WeaponSubsystem extends SubsystemBase {
+    private boolean isClosed = false;
     public DigitalInput sensor1;
 
     CANSparkMax verticalNeo = new CANSparkMax(WeaponConstants.weaponVerticalPort, MotorType.kBrushless);
@@ -32,11 +32,13 @@ public class WeaponSubsystem extends SubsystemBase {
     //will set pneumatics reverse and open
     public void openWeapon() {
         m_weaponSolenoid.set(kReverse);
+        isClosed = false;
     }
     
     //will set pneumatics forward and close
     public void closeWeapon() {
         m_weaponSolenoid.set(kForward);
+        isClosed = true;
     }
 
     //will have pneaumatics shut off, not open or closed
@@ -57,6 +59,15 @@ public class WeaponSubsystem extends SubsystemBase {
     public void driveWeapon(double hDirection, double vDirection){
         driveHorizontal(hDirection);
         driveVertical(vDirection);
+    }
+
+    public void toggleOpen(){
+        if(isClosed){
+            openWeapon();
+        }
+        else{
+            closeWeapon();
+        }
     }
 } 
     

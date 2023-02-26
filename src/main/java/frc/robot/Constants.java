@@ -42,6 +42,7 @@ public final class Constants {
   }
 
   public static final class OIConstants {
+    public static final boolean tankSticks = false;
     public static final int kDriverControllerPortDrive = 0;
     public static final int kDriverControllerPortWeapon = 1;
   }
