@@ -47,8 +47,8 @@ public class DefaultDrive extends CommandBase {
   @Override
   public void execute() {
     if(OIConstants.tankSticks){
-      m_drive.tankDrive(m_forward.getAsDouble(), m_horizontal.getAsDouble());
-      m_weapon.driveWeapon(m_rotation.getAsDouble(), m_vertical.getAsDouble());
+      m_drive.tankDrive(m_forward.getAsDouble(), m_rotation.getAsDouble());
+      m_weapon.driveWeapon(m_vertical.getAsDouble(), m_horizontal.getAsDouble());
     }
     else{
     m_drive.arcadeDrive(m_forward.getAsDouble(), m_rotation.getAsDouble());

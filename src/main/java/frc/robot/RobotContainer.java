@@ -89,7 +89,7 @@ public class RobotContainer {
     else{
     m_robotDrive.setDefaultCommand(
         // A split-stick arcade command, with forward/backward controlled by the left
-        // hand, and turning controlled by the right.
+        // hand, and turning controlled by the  right.
       new DefaultDrive(
           m_robotDrive,
           () -> m_JoystickLeft.getY(),

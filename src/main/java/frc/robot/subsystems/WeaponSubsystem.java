@@ -48,7 +48,8 @@ public class WeaponSubsystem extends SubsystemBase {
 
     //drives verical motor
     public void driveVertical(double direction){
-        verticalNeo.set(direction);
+        //down is go up and up is go out
+        verticalNeo.set(-direction);
     }
 
     //drives horizontal motor
