@@ -4,7 +4,9 @@
 
 package frc.robot.commands;
 
+import frc.robot.Constants.WeaponConstants;
 import frc.robot.subsystems.DriveSubsystem;
+import frc.robot.subsystems.WeaponSubsystem;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import java.util.function.DoubleSupplier;
 
@@ -17,6 +19,10 @@ public class DefaultDrive extends CommandBase {
   private final DriveSubsystem m_drive;
   private final DoubleSupplier m_forward;
   private final DoubleSupplier m_rotation;
+  private final WeaponSubsystem m_weapon;
+  private final DoubleSupplier m_horizontal;
+  private final DoubleSupplier m_vertical;
+
 
   /**
    * Creates a new DefaultDrive.
@@ -25,15 +31,19 @@ public class DefaultDrive extends CommandBase {
    * @param forward The control input for driving forwards/backwards
    * @param rotation The control input for turning
    */
-  public DefaultDrive(DriveSubsystem subsystem, DoubleSupplier forward, DoubleSupplier rotation) {
+  public DefaultDrive(DriveSubsystem subsystem, DoubleSupplier forward, DoubleSupplier rotation, WeaponSubsystem weaponSystem, DoubleSupplier horizontal, DoubleSupplier vertical) {
     m_drive = subsystem;
     m_forward = forward;
     m_rotation = rotation;
+    m_weapon = weaponSystem;
+    m_horizontal = horizontal;
+    m_vertical = vertical;
     addRequirements(m_drive);
   }
 
   @Override
   public void execute() {
     m_drive.arcadeDrive(m_forward.getAsDouble(), m_rotation.getAsDouble());
+    m_weapon.driveWeapon(m_horizontal.getAsDouble(), m_vertical.getAsDouble());
   }
 }

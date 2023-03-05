@@ -4,7 +4,7 @@
 
 package frc.robot.commands;
 
-import frc.robot.subsystems.HatchSubsystem;
+import frc.robot.subsystems.WeaponSubsystem;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 /**
@@ -12,18 +12,20 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
  * pedagogical purposes. Actual code should inline a command this simple with {@link
  * edu.wpi.first.wpilibj2.command.InstantCommand}.
  */
-public class GrabHatch extends CommandBase {
+public class CloseWeapon extends CommandBase {
   // The subsystem the command runs on
-  private final HatchSubsystem m_hatchSubsystem;
+  private final WeaponSubsystem m_weaponSubsystem;
 
-  public GrabHatch(HatchSubsystem subsystem) {
-    m_hatchSubsystem = subsystem;
-    addRequirements(m_hatchSubsystem);
+  public CloseWeapon(WeaponSubsystem subsystem) {
+    m_weaponSubsystem = subsystem;
+    addRequirements(m_weaponSubsystem);
+
+    System.out.println("--Close Weapon");
   }
 
   @Override
   public void initialize() {
-    m_hatchSubsystem.grabHatch();
+    m_weaponSubsystem.closeWeapon();
   }
 
   @Override

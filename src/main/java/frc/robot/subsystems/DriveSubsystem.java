@@ -4,7 +4,7 @@
 
 package frc.robot.subsystems;
 
-import edu.wpi.first.wpilibj.Encoder;
+//import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import frc.robot.Constants.DriveConstants;
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
@@ -13,8 +13,8 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 //Motor Controller imports
 import com.ctre.phoenix.motorcontrol.can.*;
 import com.ctre.phoenix.motorcontrol.*;
-import com.ctre.phoenix.sensors.CANCoder;
-import com.ctre.phoenixpro.hardware.CANcoder;
+//import com.ctre.phoenix.sensors.CANCoder;
+//import com.ctre.phoenixpro.hardware.CANcoder;
 
 //NavX
 import edu.wpi.first.wpilibj.SPI;
@@ -57,6 +57,7 @@ public class DriveSubsystem extends SubsystemBase {
     rightMotor2.configSelectedFeedbackSensor(FeedbackDevice.IntegratedSensor, 0, 0);
 
     navX = new AHRS(SPI.Port.kMXP);
+    m_drive.setMaxOutput(DriveConstants.driveSpeed);
   }
 
   /**
