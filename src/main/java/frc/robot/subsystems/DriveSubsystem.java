@@ -57,6 +57,7 @@ public class DriveSubsystem extends SubsystemBase {
     rightMotor2.configSelectedFeedbackSensor(FeedbackDevice.IntegratedSensor, 0, 0);
 
     navX = new AHRS(SPI.Port.kMXP);
+    m_drive.setMaxOutput(DriveConstants.driveSpeed);
   }
 
   /**
