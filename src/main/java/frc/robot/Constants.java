@@ -19,6 +19,8 @@ public final class Constants {
     public static final int kRightMotor1Port = 11;
     public static final int kRightMotor2Port = 12;
 
+    public static final double driveSpeed = 0.6;
+
     public static final double ticksPerInch = 1164.23;
 
     public static final int[] kLeftEncoderPorts = new int[] {0, 1};
@@ -33,6 +35,8 @@ public final class Constants {
     public static final int weaponVerticalPort = 14;
     public static final int kWeaponSolenoidModule = 0;
     public static final int[] kWeaponSolenoidPorts = new int[] {0, 1};
+    public static final double weaponHorizontalSpeed = 0.25;
+    public static final double weaponVerticalSpeed = 0.25;
   }
 
   public static final class AutoConstants {
