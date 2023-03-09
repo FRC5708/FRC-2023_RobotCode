@@ -55,6 +55,7 @@ public class WeaponSubsystem extends SubsystemBase {
 
     //drives horizontal motor
     public void driveHorizontal(double direction){
+        //moves arm in and out
         direction *= WeaponConstants.weaponHorizontalSpeed;
         horizontalNeo.set(direction);
     }
