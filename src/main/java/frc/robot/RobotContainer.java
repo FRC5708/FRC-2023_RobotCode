@@ -81,7 +81,7 @@ public class RobotContainer {
         new DefaultDrive(
             m_robotDrive,
             () -> (m_driverController.getLeftTriggerAxis()*-1)+m_driverController.getRightTriggerAxis(),
-            () -> -m_driverController.getRightX(),
+            () -> -m_driverController.getLeftX(),
             weaponSubsystem,
             () -> m_weaponController.getLeftY(),
             () -> m_weaponController.getRightY()));
@@ -123,8 +123,8 @@ public class RobotContainer {
     new JoystickButton(m_driverController, Button.kA.value).onTrue(new CheckSensor(weaponSubsystem));
     //Gives tilt angle when the 'B' button is pressed.
     new JoystickButton(m_driverController, Button.kB.value).onTrue(new CheckTilt(m_robotDrive));
-    // While holding the shoulder button, drive at half speed
-    new JoystickButton(m_driverController, Button.kRightBumper.value)
+    // While holding the Y, drive at half speed
+    new JoystickButton(m_driverController, Button.kY.value)
         .whileTrue(new HalveDriveSpeed(m_robotDrive));
     //new JoystickButton(m_driverController, )
 

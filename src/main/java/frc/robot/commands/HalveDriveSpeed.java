@@ -16,7 +16,7 @@ public class HalveDriveSpeed extends CommandBase {
 
   @Override
   public void initialize() {
-    m_drive.setMaxOutput(0.5);
+    m_drive.setMaxOutput(0.3);
   }
 
   @Override
