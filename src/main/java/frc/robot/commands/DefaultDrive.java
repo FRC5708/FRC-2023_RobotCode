@@ -10,6 +10,8 @@ import frc.robot.subsystems.WeaponSubsystem;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import java.util.function.DoubleSupplier;
 
+import frc.robot.Constants.DriveConstants;
+
 /**
  * A command to drive the robot with joystick input (passed in as {@link DoubleSupplier}s). Written
  * explicitly for pedagogical purposes - actual code should inline a command this simple with {@link
@@ -47,7 +49,7 @@ public class DefaultDrive extends CommandBase {
   @Override
   public void execute() {
     if(OIConstants.tankSticks){
-      m_drive.tankDrive(m_forward.getAsDouble(), m_rotation.getAsDouble());
+      m_drive.tankDrive(m_forward.getAsDouble() * DriveConstants.driveSpeed, m_rotation.getAsDouble() * DriveConstants.turnSpeed);
       m_weapon.driveWeapon(m_vertical.getAsDouble(), m_horizontal.getAsDouble());
     }
     else{
