@@ -38,7 +38,7 @@ public final class Constants {
     public static final int weaponVerticalPort = 14;
     public static final int kWeaponSolenoidModule = 0;
     public static final int[] kWeaponSolenoidPorts = new int[] {0, 1};
-    public static final double weaponHorizontalSpeed = 0.55;
+    public static final double weaponHorizontalSpeed = 0.5;
     public static final double weaponVerticalSpeed = 0.25;
   }
 
