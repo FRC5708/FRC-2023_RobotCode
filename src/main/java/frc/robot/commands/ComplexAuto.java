@@ -25,7 +25,7 @@ public class ComplexAuto extends SequentialCommandGroup {
        
         new DriveDistance(
             AutoConstants.kAutoDriveDistanceInches, AutoConstants.kAutoDriveSpeed, drive),
-        new DriveDistance(156, AutoConstants.kAutoDriveSpeed, drive),
+        new DriveDistance(120, AutoConstants.kAutoDriveSpeed, drive),
         new DriveDistance(-156, AutoConstants.kAutoDriveSpeed, drive)
         //new RotateDrive(90.0, drive)    
     );
