@@ -40,7 +40,7 @@ public class BalanceOnBeamCommand extends CommandBase {
 
     // Our robot needed an extra push to drive up in reverse, probably due to weight imbalances
     if (drivePower < 0) {
-      drivePower *= Constants.BACKWARDS_BALANCING_EXTRA_POWER_MULTIPLIER;
+      //drivePower *= Constants.BACKWARDS_BALANCING_EXTRA_POWER_MULTIPLIER;
     }
 
     // Limit the max power
@@ -48,7 +48,8 @@ public class BalanceOnBeamCommand extends CommandBase {
       drivePower = Math.copySign(0.4, drivePower);
     }
 
-    m_DriveSubsystem.drive(drivePower, drivePower);
+    //change second value to rotation
+    m_DriveSubsystem.arcadeDrive(drivePower, 0);
     
     // Debugging Print Statments
     System.out.println("Current Angle: " + currentAngle);
