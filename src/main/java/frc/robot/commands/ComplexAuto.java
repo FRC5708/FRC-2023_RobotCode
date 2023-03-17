@@ -6,8 +6,11 @@ package frc.robot.commands;
 
 import frc.robot.Constants.AutoConstants;
 import frc.robot.subsystems.DriveSubsystem;
+import frc.robot.commands.BalanceOnBeamCommand;
+
 //import frc.robot.subsystems.WeaponSubsystem;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+
 
 /** A complex auto command that drives forward, releases a hatch, and then drives backward. */
 public class ComplexAuto extends SequentialCommandGroup {
@@ -20,13 +23,9 @@ public class ComplexAuto extends SequentialCommandGroup {
   public ComplexAuto(DriveSubsystem drive) {
     System.out.println("***Complex Auto start***");
     addCommands(
-        // Drive forward the specified distance
-       
-       
-        new DriveDistance(
-            AutoConstants.kAutoDriveDistanceInches, AutoConstants.kAutoDriveSpeed, drive),
-        new DriveDistance(12, AutoConstants.kAutoDriveSpeed, drive),
-        new RotateDrive(90.0, drive)    
+        // Drive forward the specified distance 
+        new DriveDistance(61, AutoConstants.kAutoDriveSpeed, drive)
+   
     );
   }
 }

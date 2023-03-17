@@ -136,4 +136,25 @@ public class DriveSubsystem extends SubsystemBase {
   public void resetSpin(){
     navX.reset();
   }
+
+  // NavX Gyroscope Methods //
+  public void calibrateGyro() {
+    navx.calibrate();
+  }
+  public void zeroGyro() {
+    System.out.println("NavX Connected: " + navx.isConnected());
+    navx.reset();
+  }
+  public double getYaw() {
+    return navx.getYaw();
+  }
+  public double getPitch() {
+    return navx.getPitch();
+  }
+  public double getRoll() {
+    return navx.getRoll();
+  }
+  public double getAngle() {
+    return navx.getAngle();
+  }
 }
