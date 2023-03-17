@@ -24,7 +24,12 @@ public class ComplexAuto extends SequentialCommandGroup {
     System.out.println("***Complex Auto start***");
     addCommands(
         // Drive forward the specified distance 
-        new DriveDistance(61, AutoConstants.kAutoDriveSpeed, drive)
+        //Drives the distance up to the balancing beam
+        new DriveDistance(60.69, AutoConstants.kAutoDriveSpeed, drive),
+
+        new BalanceOnBeamCommand();
+        //Drives the distance up to the middle of the balancing beam (not tested if it will actually go there)
+        //new DriveDistance(96.75, AutoConstants.kAutoDriveSpeed, drive)
    
     );
   }
