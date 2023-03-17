@@ -39,6 +39,13 @@ public final class Constants {
     public static final double kAutoDriveDistanceInches = 36;
     public static final double kAutoBackupDistanceInches = 20;
     public static final double kAutoDriveSpeed = 0.5;
+
+    //For AutoBalance
+    public static final double BEAM_BALANACED_DRIVE_KP = 0.015; // P (Proportional) constant of a PID loop
+    public static final double BEAM_BALANCED_GOAL_DEGREES = 0;
+    public static final double BEAM_BALANCED_ANGLE_TRESHOLD_DEGREES = 1;
+    public static final double BACKWARDS_BALANCING_EXTRA_POWER_MULTIPLIER = 1.35;
+    //public static final double GYRO_TURN_KP = 0.007; // P (Proportional) constant of a PID loop
   }
 
   public static final class OIConstants {
