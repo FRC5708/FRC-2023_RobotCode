@@ -11,13 +11,12 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.WeaponConstants;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
-import com.revrobotics.RelativeEncoder;
 
 public class WeaponSubsystem extends SubsystemBase {
     private boolean isClosed = false;
     public DigitalInput sensor1;
-    public DigitalInput heffect1;
-    public DigitalInput heffect2;
+    public DigitalInput hal1;
+    public DigitalInput hal2;
 
     CANSparkMax verticalNeo = new CANSparkMax(WeaponConstants.weaponVerticalPort, MotorType.kBrushless);
     CANSparkMax horizontalNeo = new CANSparkMax(WeaponConstants.weaponHorizontalPort, MotorType.kBrushless);
@@ -33,8 +32,10 @@ public class WeaponSubsystem extends SubsystemBase {
 
     public WeaponSubsystem(){
         sensor1 = new DigitalInput(0);
-        heffect1 = new DigitalInput(1);
-        heffect2 = new DigitalInput(2);
+        hal1 = new DigitalInput(1);
+        hal2 = new DigitalInput(2);
+
+
     }
 
     //will set pneumatics reverse and open
@@ -63,8 +64,18 @@ public class WeaponSubsystem extends SubsystemBase {
 
     //drives horizontal motor
     public void driveHorizontal(double direction){
-        direction *= WeaponConstants.weaponHorizontalSpeed;
-        horizontalNeo.set(direction);
+        //moves arm in and out
+        if(!sensor1.get() && direction > 0){
+            horizontalNeo.set(0.0);
+
+        }
+        else {
+            direction *= WeaponConstants.weaponHorizontalSpeed;
+            horizontalNeo.set(direction);
+        }
+        ;
+
+        
     }
 
     public void driveWeapon(double hDirection, double vDirection){
@@ -76,6 +87,15 @@ public class WeaponSubsystem extends SubsystemBase {
         }
         if(!heffect2.get()){
             driveVertical(vDirection);
+        }
+    }
+
+    public void toggleOpen(){
+        if(isClosed){
+            openWeapon();
+        }
+        else{
+            closeWeapon();
         }
     }
 

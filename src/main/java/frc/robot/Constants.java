@@ -4,6 +4,8 @@
 
 package frc.robot;
 
+import edu.wpi.first.math.filter.SlewRateLimiter;
+
 /**
  * The Constants class provides a convenient place for teams to hold robot-wide numerical or boolean
  * constants. This class should not be used for any other purpose. All constants should be declared
@@ -19,6 +21,8 @@ public final class Constants {
     public static final int kRightMotor1Port = 11;
     public static final int kRightMotor2Port = 12;
 
+    //public static final double driveSpeed = 0.6;
+
     public static final double ticksPerInch = 1164.23;
 
     public static final int[] kLeftEncoderPorts = new int[] {0, 1};
@@ -26,6 +30,10 @@ public final class Constants {
     public static final boolean kLeftEncoderReversed = false;
     public static final boolean kRightEncoderReversed = true;
 
+    public static final double driveSpeed = 0.5;
+    public static final double turnSpeed = 0.3;
+    
+    public static final double skewValue = 0.5;
   }
 
   public static final class WeaponConstants {
@@ -33,6 +41,8 @@ public final class Constants {
     public static final int weaponVerticalPort = 14;
     public static final int kWeaponSolenoidModule = 0;
     public static final int[] kWeaponSolenoidPorts = new int[] {0, 1};
+    public static final double weaponHorizontalSpeed = 0.7;
+    public static final double weaponVerticalSpeed = 0.3;
   }
 
   public static final class AutoConstants {
@@ -42,6 +52,7 @@ public final class Constants {
   }
 
   public static final class OIConstants {
+    public static final boolean tankSticks = false;
     public static final int kDriverControllerPortDrive = 0;
     public static final int kDriverControllerPortWeapon = 1;
   }
