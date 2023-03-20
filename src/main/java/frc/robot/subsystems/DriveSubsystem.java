@@ -16,6 +16,7 @@ import com.ctre.phoenix.motorcontrol.*;
 //import com.ctre.phoenix.sensors.CANCoder;
 //import com.ctre.phoenixpro.hardware.CANcoder;
 
+import edu.wpi.first.math.filter.SlewRateLimiter;
 //NavX
 import edu.wpi.first.wpilibj.SPI;
 import com.kauailabs.navx.frc.AHRS;
@@ -66,7 +67,8 @@ public class DriveSubsystem extends SubsystemBase {
    * @param rot the commanded rotation
    */
   public void arcadeDrive(double fwd, double rot) {
-    m_drive.arcadeDrive(fwd, rot);
+    SlewRateLimiter filter = new SlewRateLimiter(DriveConstants.skewValue);
+    m_drive.arcadeDrive(filter.calculate(fwd), rot);
     }
   public void tankDrive(double left, double right){
     m_drive.tankDrive(left, right);

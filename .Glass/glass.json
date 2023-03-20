@@ -3,6 +3,14 @@
     "Persistent Values": {
       "open": false
     },
+    "retained": {
+      "SmartDashboard": {
+        "Auton Code": {
+          "open": true
+        },
+        "open": true
+      }
+    },
     "transitory": {
       "FMSInfo": {
         "open": true

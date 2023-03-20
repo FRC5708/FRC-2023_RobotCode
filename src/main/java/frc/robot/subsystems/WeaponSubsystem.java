@@ -15,6 +15,8 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 public class WeaponSubsystem extends SubsystemBase {
     private boolean isClosed = false;
     public DigitalInput sensor1;
+    public DigitalInput hal1;
+    public DigitalInput hal2;
 
     CANSparkMax verticalNeo = new CANSparkMax(WeaponConstants.weaponVerticalPort, MotorType.kBrushless);
     CANSparkMax horizontalNeo = new CANSparkMax(WeaponConstants.weaponHorizontalPort, MotorType.kBrushless);
@@ -27,6 +29,10 @@ public class WeaponSubsystem extends SubsystemBase {
 
     public WeaponSubsystem(){
         sensor1 = new DigitalInput(0);
+        hal1 = new DigitalInput(1);
+        hal2 = new DigitalInput(2);
+
+
     }
 
     //will set pneumatics reverse and open
@@ -56,8 +62,17 @@ public class WeaponSubsystem extends SubsystemBase {
     //drives horizontal motor
     public void driveHorizontal(double direction){
         //moves arm in and out
-        direction *= WeaponConstants.weaponHorizontalSpeed;
-        horizontalNeo.set(direction);
+        if(!sensor1.get() && direction > 0){
+            horizontalNeo.set(0.0);
+
+        }
+        else {
+            direction *= WeaponConstants.weaponHorizontalSpeed;
+            horizontalNeo.set(direction);
+        }
+        ;
+
+        
     }
 
     public void driveWeapon(double hDirection, double vDirection){

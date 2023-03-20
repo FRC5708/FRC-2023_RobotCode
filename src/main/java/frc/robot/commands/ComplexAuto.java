@@ -21,12 +21,8 @@ public class ComplexAuto extends SequentialCommandGroup {
     System.out.println("***Complex Auto start***");
     addCommands(
         // Drive forward the specified distance
-       
-       
-        new DriveDistance(
-            AutoConstants.kAutoDriveDistanceInches, AutoConstants.kAutoDriveSpeed, drive),
-        new DriveDistance(120, AutoConstants.kAutoDriveSpeed, drive),
-        new DriveDistance(-156, AutoConstants.kAutoDriveSpeed, drive)
+        new DriveDistance(120, -AutoConstants.kAutoDriveSpeed, drive)
+        //new DriveDistance(100, AutoConstants.kAutoDriveSpeed, drive)
         //new RotateDrive(90.0, drive)    
     );
   }
