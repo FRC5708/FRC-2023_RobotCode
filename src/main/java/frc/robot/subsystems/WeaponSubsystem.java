@@ -12,6 +12,8 @@ import frc.robot.Constants.WeaponConstants;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
+import edu.wpi.first.math.filter.SlewRateLimiter;
+
 public class WeaponSubsystem extends SubsystemBase {
     private boolean isClosed = false;
     public DigitalInput sensor1;
@@ -20,6 +22,9 @@ public class WeaponSubsystem extends SubsystemBase {
 
     CANSparkMax verticalNeo = new CANSparkMax(WeaponConstants.weaponVerticalPort, MotorType.kBrushless);
     CANSparkMax horizontalNeo = new CANSparkMax(WeaponConstants.weaponHorizontalPort, MotorType.kBrushless);
+
+    SlewRateLimiter horizontalFilter = new SlewRateLimiter(WeaponConstants.horizontalSkewValueWeapon);
+    SlewRateLimiter verticalFilter = new SlewRateLimiter(WeaponConstants.verticalSkewValueWeapon);
 
     private final DoubleSolenoid m_weaponSolenoid = 
     new DoubleSolenoid(
