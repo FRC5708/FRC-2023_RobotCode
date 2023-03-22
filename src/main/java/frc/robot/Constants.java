@@ -26,6 +26,7 @@ public final class Constants {
     public static final boolean kLeftEncoderReversed = false;
     public static final boolean kRightEncoderReversed = true;
 
+    //public static final double driveSpeed = 0.7;
   }
 
   public static final class WeaponConstants {

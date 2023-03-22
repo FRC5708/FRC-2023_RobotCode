@@ -3,7 +3,7 @@
 
 package frc.robot.commands;
 
-import frc.robot.Constants;
+import frc.robot.Constants.AutoConstants;
 import frc.robot.Robot;
 import frc.robot.subsystems.DriveSubsystem;
 
@@ -12,7 +12,7 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 // This command self=balances on the charging station using gyroscope pitch as feedback
 public class BalanceOnBeamCommand extends CommandBase {
 
-  private DriveSubsystem m_DriveSubsystem;
+  private DriveSubsystem m_DriveSubsystem = new DriveSubsystem();
 
   private double error;
   private double currentAngle;
@@ -20,7 +20,7 @@ public class BalanceOnBeamCommand extends CommandBase {
 
   /** Command to use Gyro data to resist the tip angle from the beam - to stabalize and balanace */
   public BalanceOnBeamCommand() {
-    this.m_DriveSubsystem = Robot.m_driveSubsystem;
+    //this.m_DriveSubsystem = Robot.m_driveSubsystem;
     addRequirements(m_DriveSubsystem);
   }
 
@@ -35,8 +35,8 @@ public class BalanceOnBeamCommand extends CommandBase {
     // Double currentAngle = -1 * Robot.controller.getRawAxis(Constants.LEFT_VERTICAL_JOYSTICK_AXIS) * 45;
     this.currentAngle = m_DriveSubsystem.getPitch();
 
-    error = Constants.BEAM_BALANCED_GOAL_DEGREES - currentAngle;
-    drivePower = -Math.min(Constants.BEAM_BALANACED_DRIVE_KP * error, 1);
+    error = AutoConstants.BEAM_BALANCED_GOAL_DEGREES - currentAngle;
+    drivePower = -Math.min(AutoConstants.BEAM_BALANACED_DRIVE_KP * error, 1);
 
     // Our robot needed an extra push to drive up in reverse, probably due to weight imbalances
     if (drivePower < 0) {
@@ -66,6 +66,6 @@ public class BalanceOnBeamCommand extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return Math.abs(error) < Constants.BEAM_BALANCED_ANGLE_TRESHOLD_DEGREES; // End the command when we are within the specified threshold of being 'flat' (gyroscope pitch of 0 degrees)
+    return Math.abs(error) < AutoConstants.BEAM_BALANCED_ANGLE_TRESHOLD_DEGREES; // End the command when we are within the specified threshold of being 'flat' (gyroscope pitch of 0 degrees)
   }
 }
