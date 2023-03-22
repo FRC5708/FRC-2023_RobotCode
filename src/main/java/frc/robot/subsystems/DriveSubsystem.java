@@ -44,6 +44,9 @@ public class DriveSubsystem extends SubsystemBase {
   //NavX
   private AHRS navX;
 
+  SlewRateLimiter fwdFilter = new SlewRateLimiter(DriveConstants.fwdSkewValue);
+  SlewRateLimiter turnFilter = new SlewRateLimiter(DriveConstants.turnSkewValue);
+
   /** Creates a new DriveSubsystem. */
   public DriveSubsystem() {
     // We need to invert one side of the drivetrain so that positive voltages
@@ -68,8 +71,8 @@ public class DriveSubsystem extends SubsystemBase {
    * @param rot the commanded rotation
    */
   public void arcadeDrive(double fwd, double rot) {
-    SlewRateLimiter filter = new SlewRateLimiter(DriveConstants.skewValue);
-    m_drive.arcadeDrive(filter.calculate(fwd), rot);
+    m_drive.arcadeDrive(fwdFilter.calculate(fwd), turnFilter.calculate(rot));
+    //m_drive.arcadeDrive(fwd,rot);
     }
   public void tankDrive(double left, double right){
     m_drive.tankDrive(left, right);
