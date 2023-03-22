@@ -16,6 +16,7 @@ import com.ctre.phoenix.motorcontrol.*;
 //import com.ctre.phoenix.sensors.CANCoder;
 //import com.ctre.phoenixpro.hardware.CANcoder;
 
+import edu.wpi.first.math.filter.SlewRateLimiter;
 //NavX
 import edu.wpi.first.wpilibj.SPI;
 import com.kauailabs.navx.frc.AHRS;
@@ -43,6 +44,9 @@ public class DriveSubsystem extends SubsystemBase {
   //NavX
   private AHRS navX;
 
+  SlewRateLimiter fwdFilter =  new SlewRateLimiter(DriveConstants.fwdSkewValue);
+  SlewRateLimiter turnFilter = new SlewRateLimiter(DriveConstants.turnSkewValue);
+
   /** Creates a new DriveSubsystem. */
   public DriveSubsystem() {
     // We need to invert one side of the drivetrain so that positive voltages
@@ -67,8 +71,8 @@ public class DriveSubsystem extends SubsystemBase {
    * @param rot the commanded rotation
    */
   public void arcadeDrive(double fwd, double rot) {
-    m_drive.arcadeDrive(fwd, rot);
-    }
+    m_drive.arcadeDrive(fwdFilter.calculate(fwd), turnFilter.calculate(rot));
+  }
 
   /** Resets the drive encoders to currently read a position of 0. */
   public void resetEncoders() {

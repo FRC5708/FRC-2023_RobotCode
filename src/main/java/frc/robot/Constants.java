@@ -28,6 +28,9 @@ public final class Constants {
 
     public static final double driveSpeed = 0.5;
     public static final double turnSpeed = 0.3;
+
+    public static final double fwdSkewValue = 0.85;
+    public static final double turnSkewValue = 0.7;
   }
 
   public static final class WeaponConstants {
@@ -35,6 +38,9 @@ public final class Constants {
     public static final int weaponVerticalPort = 14;
     public static final int kWeaponSolenoidModule = 0;
     public static final int[] kWeaponSolenoidPorts = new int[] {0, 1};
+
+    public static final double horizontalSkewValueWeapon = 0.5;
+    public static final double verticalSkewValueWeapon = 0.5;
   }
 
   public static final class AutoConstants {

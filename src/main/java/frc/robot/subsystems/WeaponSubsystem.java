@@ -87,10 +87,10 @@ public class WeaponSubsystem extends SubsystemBase {
         System.out.println("Vertical Position: "+ verticalEncoder.getPosition());
         System.out.println("Horizontal Position: "+ horizontalEncoder.getPosition());
 
-        if(!heffect1.get()){
+        if(!hal1.get()){
             driveHorizontal(hDirection);
         }
-        if(!heffect2.get()){
+        if(!hal2.get()){
             driveVertical(vDirection);
         }
     }
