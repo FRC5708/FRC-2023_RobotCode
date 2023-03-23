@@ -31,10 +31,10 @@ public final class Constants {
     public static final boolean kRightEncoderReversed = true;
 
     public static final double driveSpeed = 0.5;
-    public static final double turnSpeed = 0.3;
+    public static final double turnSpeed = 0.1;
     
-    public static final double fwdSkewValue = 0.85;
-    public static final double turnSkewValue = 0.7;
+    public static final double fwdSkewValue = 0.95;
+    public static final double turnSkewValue = 0.95;
   }
 
   public static final class WeaponConstants {
