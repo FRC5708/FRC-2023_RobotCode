@@ -19,9 +19,10 @@ public class BalanceOnBeamCommand extends CommandBase {
   private double drivePower;
 
   /** Command to use Gyro data to resist the tip angle from the beam - to stabalize and balanace */
-  public BalanceOnBeamCommand() {
-    //this.m_DriveSubsystem = Robot.m_driveSubsystem;
-    addRequirements(m_DriveSubsystem);
+  public BalanceOnBeamCommand(DriveSubsystem drive) {
+    //this.m_DriveSubsystem = drive;
+    System.out.println("BALANCE");
+    addRequirements(drive);
   }
 
   // Called when the command is initially scheduled.
@@ -36,7 +37,7 @@ public class BalanceOnBeamCommand extends CommandBase {
     this.currentAngle = m_DriveSubsystem.getPitch();
 
     error = AutoConstants.BEAM_BALANCED_GOAL_DEGREES - currentAngle;
-    drivePower = -Math.min(AutoConstants.BEAM_BALANACED_DRIVE_KP * error, 1);
+    drivePower = Math.min(AutoConstants.BEAM_BALANACED_DRIVE_KP * error, 1);
 
     // Our robot needed an extra push to drive up in reverse, probably due to weight imbalances
     if (drivePower < 0) {
