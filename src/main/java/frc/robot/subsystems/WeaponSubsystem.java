@@ -60,8 +60,29 @@ public class WeaponSubsystem extends SubsystemBase {
     //drives verical motor
     public void driveVertical(double direction){
         //down is go up and up is go out
-        direction *= WeaponConstants.weaponVerticalSpeed;
-        verticalNeo.set(-direction);
+       // direction *= WeaponConstants.weaponVerticalSpeed;
+       // verticalNeo.set(-direction);
+
+        if (!(hal1.get() == true)){
+            System.out.println("YAY!! 1");
+        }
+        else if (!(hal2.get() == true)){
+            System.out.println("YAY! 2");
+        }
+
+        if (hal1.get() == false && direction < 0){
+            verticalNeo.set(0.0);
+        }
+        else if (hal2.get() == false && direction > 0){
+            verticalNeo.set(0.0);
+        }
+        else {
+            direction *= WeaponConstants.weaponVerticalSpeed;
+            verticalNeo.set(-direction);
+        }
+
+        //System.out.println("Hal 1 = " + hal1.get());
+        //System.out.println("Hal 2 = " + hal2.get());
     }
 
     //drives horizontal motor
