@@ -10,9 +10,10 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.Constants.AutoConstants;
 import frc.robot.Constants.OIConstants;
+import frc.robot.commands.BackwardAuto;
 import frc.robot.commands.CheckSensor;
 import frc.robot.commands.CheckTilt;
-import frc.robot.commands.ComplexAuto;
+import frc.robot.commands.BalanceAuto;
 import frc.robot.commands.DefaultDrive;
 import frc.robot.commands.DriveDistance;
 import frc.robot.commands.HalveDriveSpeed;
@@ -99,8 +100,9 @@ public class RobotContainer {
           () -> m_JoystickRight.getX()));
     }
     // Add commands to the autonomous command chooser
-    chooser.setDefaultOption("Simple Auto", simpleAuto);
-    chooser.addOption("Complex Auto", new ComplexAuto(m_robotDrive));
+    chooser.setDefaultOption("Nothing", simpleAuto);
+    chooser.addOption("Balance", new BalanceAuto(m_robotDrive));
+    chooser.addOption("Drives Backward", new BackwardAuto(m_robotDrive));
 
     // Put the chooser on the dashboard
    SmartDashboard.putData("Auton Code", chooser);
