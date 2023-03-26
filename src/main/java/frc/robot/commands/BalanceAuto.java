@@ -6,13 +6,16 @@ package frc.robot.commands;
 
 import frc.robot.Constants.AutoConstants;
 import frc.robot.subsystems.DriveSubsystem;
+import frc.robot.commands.BalanceOnBeamCommand;
+
 //import frc.robot.subsystems.WeaponSubsystem;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+
 
 /** A complex auto command that drives forward, releases a hatch, and then drives backward. */
 public class BalanceAuto extends SequentialCommandGroup {
   /**
-   * Creates a new ComplexAuto.
+   * Creates a new BalanceAuto.
    *
    * @param drive The drive subsystem this command will run on
    * @param hatch The hatch subsystem this command will run on
@@ -20,10 +23,14 @@ public class BalanceAuto extends SequentialCommandGroup {
   public BalanceAuto(DriveSubsystem drive) {
     System.out.println("***Balancing***");
     addCommands(
-        // Drive forward the specified distance
-        new DriveDistance(120, -AutoConstants.kAutoDriveSpeed, drive)
-        //new DriveDistance(100, AutoConstants.kAutoDriveSpeed, drive)
-        //new RotateDrive(90.0, drive)    
+        // Drive forward the specified distance 
+        //Drives the distance up to the balancing beam
+        new DriveDistance(80.69, AutoConstants.kAutoDriveSpeed, drive),
+
+        new BalanceOnBeamCommand(drive)
+        //Drives the distance up to the middle of the balancing beam (not tested if it will actually go there)
+        //new DriveDistance(96.75, AutoConstants.kAutoDriveSpeed, drive)
+   
     );
   }
 }
