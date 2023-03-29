@@ -12,7 +12,7 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 // This command self=balances on the charging station using gyroscope pitch as feedback
 public class BalanceOnBeamCommand extends CommandBase {
 
-  private DriveSubsystem m_DriveSubsystem = new DriveSubsystem();
+  private DriveSubsystem m_DriveSubsystem;
 
   private double error;
   private double currentAngle;
@@ -20,9 +20,8 @@ public class BalanceOnBeamCommand extends CommandBase {
 
   /** Command to use Gyro data to resist the tip angle from the beam - to stabalize and balanace */
   public BalanceOnBeamCommand(DriveSubsystem drive) {
-    //this.m_DriveSubsystem = drive;
-    System.out.println("BALANCE");
     addRequirements(drive);
+    m_DriveSubsystem = drive;
   }
 
   // Called when the command is initially scheduled.
