@@ -74,7 +74,7 @@ public class DriveSubsystem extends SubsystemBase {
     m_drive.arcadeDrive(fwdFilter.calculate(fwd), turnFilter.calculate(rot));
     //m_drive.arcadeDrive(fwdFilter.calculate(fwd), Math.pow(rot, 0.6));
     //m_drive.arcadeDrive(fwdFilter.calculate(fwd), Math.cbrt(rot));
-    System.out.println(Math.pow(rot, 0.6));
+    //System.out.println(Math.pow(rot, 0.6));
     //m_drive.arcadeDrive(fwd,rot);
     }
   public void tankDrive(double left, double right){
