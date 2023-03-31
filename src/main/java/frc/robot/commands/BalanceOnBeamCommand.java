@@ -40,12 +40,12 @@ public class BalanceOnBeamCommand extends CommandBase {
 
     // Our robot needed an extra push to drive up in reverse, probably due to weight imbalances
     if (drivePower < 0) {
-      //drivePower *= Constants.BACKWARDS_BALANCING_EXTRA_POWER_MULTIPLIER;
+      drivePower *= AutoConstants.BACKWARDS_BALANCING_EXTRA_POWER_MULTIPLIER;
     }
 
     // Limit the max power
-    if (Math.abs(drivePower) > 0.4) {
-      drivePower = Math.copySign(0.4, drivePower);
+    if (Math.abs(drivePower) > 0.3) {
+      drivePower = Math.copySign(0.3, drivePower);
     }
 
     //change second value to rotation
