@@ -58,7 +58,7 @@ public final class Constants {
     public static final double kAutoDriveSpeedBlue = 0.55;
 
      //For AutoBalance
-     public static final double BEAM_BALANACED_DRIVE_KP = 2; // P (Proportional) constant of a PID loop
+     public static final double BEAM_BALANACED_DRIVE_KP = 2.5; // P (Proportional) constant of a PID loop
      public static final double BEAM_BALANCED_GOAL_DEGREES = 0;
      public static final double BEAM_BALANCED_ANGLE_TRESHOLD_DEGREES = 1;
      public static final double BACKWARDS_BALANCING_EXTRA_POWER_MULTIPLIER = 4;

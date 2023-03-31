@@ -44,8 +44,8 @@ public class BalanceOnBeamCommand extends CommandBase {
     }
 
     // Limit the max power
-    if (Math.abs(drivePower) > 0.3) {
-      drivePower = Math.copySign(0.3, drivePower);
+    if (Math.abs(drivePower) > 0.31) {
+      drivePower = Math.copySign(0.31, drivePower);
     }
 
     //change second value to rotation

@@ -25,7 +25,7 @@ public class BalanceAutoBlue extends SequentialCommandGroup {
     addCommands(
         // Drive forward the specified distance 
         //Drives the distance up to the balancing beam
-        new DriveDistance(95.69, AutoConstants.kAutoDriveSpeedBlue, drive),
+        new DriveDistance(80.69, AutoConstants.kAutoDriveSpeedBlue, drive),
 
         new BalanceOnBeamCommand(drive)
         //Drives the distance up to the middle of the balancing beam (not tested if it will actually go there)
