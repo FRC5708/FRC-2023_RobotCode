@@ -33,6 +33,7 @@ public class WeaponSubsystem extends SubsystemBase {
         WeaponConstants.kWeaponSolenoidPorts[1]);
 
     public WeaponSubsystem(){
+        //sensor1 is photoeye sensor
         sensor1 = new DigitalInput(0);
         hal1 = new DigitalInput(1);
         hal2 = new DigitalInput(2);
@@ -80,11 +81,13 @@ public class WeaponSubsystem extends SubsystemBase {
         //moves arm in and out
         if(!sensor1.get() && direction > 0){
             horizontalNeo.set(0.0);
+            //System.out.println("--Eye Triggered");
 
         }
         else {
             direction *= WeaponConstants.weaponHorizontalSpeed;
             horizontalNeo.set(direction);
+            //System.out.println("--Eye No");
         }
         ;
 

@@ -31,7 +31,7 @@ public final class Constants {
     public static final boolean kRightEncoderReversed = true;
 
     public static final double driveSpeed = 0.5;
-    public static final double turnSpeed = 0.15;
+    public static final double turnSpeed = 0.09;
     
     public static final double fwdSkewValue = 1.5;
     public static final double turnSkewValue = 3;
@@ -54,7 +54,8 @@ public final class Constants {
   public static final class AutoConstants {
     public static final double kAutoDriveDistanceInches = 36;
     public static final double kAutoBackupDistanceInches = 20;
-    public static final double kAutoDriveSpeed = 0.5;
+    public static final double kAutoDriveSpeed = .5;
+    public static final double kAutoDriveSpeedBlue = 0.55;
 
      //For AutoBalance
      public static final double BEAM_BALANACED_DRIVE_KP = 2; // P (Proportional) constant of a PID loop

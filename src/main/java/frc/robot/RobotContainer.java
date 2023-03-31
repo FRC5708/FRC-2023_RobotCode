@@ -13,7 +13,7 @@ import frc.robot.Constants.OIConstants;
 import frc.robot.commands.BackwardAuto;
 import frc.robot.commands.CheckSensor;
 import frc.robot.commands.CheckTilt;
-import frc.robot.commands.BalanceAuto;
+import frc.robot.commands.BalanceAutoRed;
 import frc.robot.commands.DefaultDrive;
 import frc.robot.commands.DriveDistance;
 import frc.robot.commands.HalveDriveSpeed;
@@ -27,6 +27,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+import frc.robot.commands.BalanceAutoBlue;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -101,7 +102,8 @@ public class RobotContainer {
     }
     // Add commands to the autonomous command chooser
     chooser.setDefaultOption("Nothing", simpleAuto);
-    chooser.addOption("Balance", new BalanceAuto(m_robotDrive));
+    chooser.addOption("Balance - Red", new BalanceAutoRed(m_robotDrive));
+    chooser.addOption("Balance - Blue", new BalanceAutoBlue(m_robotDrive));
     chooser.addOption("Drives Backward", new BackwardAuto(m_robotDrive));
 
     // Put the chooser on the dashboard

@@ -71,8 +71,8 @@ public class DriveSubsystem extends SubsystemBase {
    * @param rot the commanded rotation
    */
   public void arcadeDrive(double fwd, double rot) {
-    m_drive.arcadeDrive(fwdFilter.calculate(fwd), turnFilter.calculate(rot));
-    //m_drive.arcadeDrive(fwdFilter.calculate(fwd), Math.pow(rot, 0.6));
+    //m_drive.arcadeDrive(fwdFilter.calculate(fwd), turnFilter.calculate(rot));
+    m_drive.arcadeDrive(fwdFilter.calculate(fwd), (rot/Math.abs(rot)) * (Math.pow(Math.abs(rot), (0.85))));
     //m_drive.arcadeDrive(fwdFilter.calculate(fwd), Math.cbrt(rot));
     //System.out.println(Math.pow(rot, 0.6));
     //m_drive.arcadeDrive(fwd,rot);
