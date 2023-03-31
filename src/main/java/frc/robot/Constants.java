@@ -35,6 +35,8 @@ public final class Constants {
     
     public static final double fwdSkewValue = 1.5;
     public static final double turnSkewValue = 3;
+
+    //public static final double rotExp = 0.6;
   }
 
   public static final class WeaponConstants {

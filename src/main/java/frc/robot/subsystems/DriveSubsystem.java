@@ -21,6 +21,7 @@ import edu.wpi.first.math.filter.SlewRateLimiter;
 import edu.wpi.first.wpilibj.SPI;
 import com.kauailabs.navx.frc.AHRS;
 
+
 public class DriveSubsystem extends SubsystemBase {
   // The motors on the left side of the drive.
   private WPI_TalonFX leftMotor1 = new WPI_TalonFX(DriveConstants.kLeftMotor1Port);
@@ -71,6 +72,9 @@ public class DriveSubsystem extends SubsystemBase {
    */
   public void arcadeDrive(double fwd, double rot) {
     m_drive.arcadeDrive(fwdFilter.calculate(fwd), turnFilter.calculate(rot));
+    //m_drive.arcadeDrive(fwdFilter.calculate(fwd), Math.pow(rot, 0.6));
+    //m_drive.arcadeDrive(fwdFilter.calculate(fwd), Math.cbrt(rot));
+    System.out.println(Math.pow(rot, 0.6));
     //m_drive.arcadeDrive(fwd,rot);
     }
   public void tankDrive(double left, double right){
