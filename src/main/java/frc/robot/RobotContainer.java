@@ -58,23 +58,16 @@ public class RobotContainer {
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
 
-    if(!OIConstants.tankSticks)
-    {
-      m_driverController =  new XboxController(OIConstants.kDriverControllerPortDrive);
-      m_weaponController = new XboxController(OIConstants.kDriverControllerPortWeapon);
-    }
-    else
-    {
-      m_JoystickLeft = new Joystick(OIConstants.kDriverControllerPortDrive);
       m_JoystickRight  = new Joystick(OIConstants.kDriverControllerPortWeapon);
     }
+          m_driverController =  new XboxController(OIConstants.kDriverControllerPortDrive);
 
     // Configure the button bindings
     configureButtonBindings();
 
     // Configure default commands
     // Set the default drive command to split-stick arcade drive
-    if(!OIConstants.tankSticks){
+    
     m_robotDrive.setDefaultCommand(
         // A split-stick arcade command, with forward/backward controlled by the left
         // hand, and turning controlled by the right.
@@ -86,20 +79,8 @@ public class RobotContainer {
             //() -> m_weaponController.getLeftY(),
             //() -> m_weaponController.getRightY()));
     );
-    }
-    else{
-    m_robotDrive.setDefaultCommand(
-        // A split-stick arcade command, with forward/backward controlled by the left
-        // hand, and turning controlled by the  right.
-      new DefaultDrive(
-          m_robotDrive,
-          () -> m_JoystickLeft.getY(),
-          () -> m_JoystickRight.getY())
-          //weaponSubsystem,
-          //() -> m_JoystickLeft.getX(),
-          //() -> m_JoystickRight.getX()));
-      );
-    }
+    
+    
     // Add commands to the autonomous command chooser
     chooser.setDefaultOption("Simple Auto", simpleAuto);
     chooser.addOption("Complex Auto", new ComplexAuto(m_robotDrive));
@@ -116,18 +97,18 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    if(OIConstants.tankSticks){
-      new JoystickButton(m_JoystickLeft, ButtonType.kTrigger.value).onTrue(new HalveDriveSpeed(m_robotDrive));
+    //if(OIConstants.tankSticks){
+    //  new JoystickButton(m_JoystickLeft, ButtonType.kTrigger.value).onTrue(new HalveDriveSpeed(m_robotDrive));
       //new JoystickButton(m_JoystickRight, ButtonType.kTrigger.value).onTrue(new ToggleWeapon(weaponSubsystem));
-    }
-    else{
+    //}
+    //else{
     // Says if sensor is blocked when the 'A' button is pressed.
     //new JoystickButton(m_driverController, Button.kA.value).onTrue(new CheckSensor(weaponSubsystem));
     //Gives tilt angle when the 'B' button is pressed.
     //new JoystickButton(m_driverController, Button.kB.value).onTrue(new CheckTilt(m_robotDrive));
     // While holding the Y, drive at half speed
-    new JoystickButton(m_driverController, Button.kY.value)
-        .whileTrue(new HalveDriveSpeed(m_robotDrive));
+    //new JoystickButton(m_driverController, Button.kY.value)
+    //    .whileTrue(new HalveDriveSpeed(m_robotDrive));
     //new JoystickButton(m_driverController, )
 
     
@@ -136,7 +117,7 @@ public class RobotContainer {
 
     //new JoystickButton(m_weaponController, Button.kLeftBumper.value)
     //.onTrue(new CloseWeapon(weaponSubsystem));
-    }
+    //}
   }
 
   /**
