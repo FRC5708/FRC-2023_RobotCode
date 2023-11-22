@@ -10,17 +10,17 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.Constants.AutoConstants;
 import frc.robot.Constants.OIConstants;
-import frc.robot.commands.CheckSensor;
+//import frc.robot.commands.CheckSensor;
 import frc.robot.commands.CheckTilt;
 import frc.robot.commands.ComplexAuto;
 import frc.robot.commands.DefaultDrive;
 import frc.robot.commands.DriveDistance;
 import frc.robot.commands.HalveDriveSpeed;
-import frc.robot.commands.OpenWeapon;
-import frc.robot.commands.ToggleWeapon;
-import frc.robot.commands.CloseWeapon;
+//import frc.robot.commands.OpenWeapon;
+//import frc.robot.commands.ToggleWeapon;
+//import frc.robot.commands.CloseWeapon;
 import frc.robot.subsystems.DriveSubsystem;
-import frc.robot.subsystems.WeaponSubsystem;
+//import frc.robot.subsystems.WeaponSubsystem;
 //import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -36,7 +36,7 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 public class RobotContainer {
   // The robot's subsystems
   private final DriveSubsystem m_robotDrive = new DriveSubsystem();
-  private final WeaponSubsystem weaponSubsystem = new WeaponSubsystem();
+  //private final WeaponSubsystem weaponSubsystem = new WeaponSubsystem();
   
   // The autonomous routines
 
@@ -81,10 +81,11 @@ public class RobotContainer {
         new DefaultDrive(
             m_robotDrive,
             () -> (m_driverController.getLeftTriggerAxis()*-1)+m_driverController.getRightTriggerAxis(),
-            () -> -m_driverController.getLeftX(),
-            weaponSubsystem,
-            () -> m_weaponController.getLeftY(),
-            () -> m_weaponController.getRightY()));
+            () -> -m_driverController.getLeftX())
+            //weaponSubsystem,
+            //() -> m_weaponController.getLeftY(),
+            //() -> m_weaponController.getRightY()));
+    );
     }
     else{
     m_robotDrive.setDefaultCommand(
@@ -93,10 +94,11 @@ public class RobotContainer {
       new DefaultDrive(
           m_robotDrive,
           () -> m_JoystickLeft.getY(),
-          () -> m_JoystickRight.getY(),
-          weaponSubsystem,
-          () -> m_JoystickLeft.getX(),
-          () -> m_JoystickRight.getX()));
+          () -> m_JoystickRight.getY())
+          //weaponSubsystem,
+          //() -> m_JoystickLeft.getX(),
+          //() -> m_JoystickRight.getX()));
+      );
     }
     // Add commands to the autonomous command chooser
     chooser.setDefaultOption("Simple Auto", simpleAuto);
@@ -116,24 +118,24 @@ public class RobotContainer {
   private void configureButtonBindings() {
     if(OIConstants.tankSticks){
       new JoystickButton(m_JoystickLeft, ButtonType.kTrigger.value).onTrue(new HalveDriveSpeed(m_robotDrive));
-      new JoystickButton(m_JoystickRight, ButtonType.kTrigger.value).onTrue(new ToggleWeapon(weaponSubsystem));
+      //new JoystickButton(m_JoystickRight, ButtonType.kTrigger.value).onTrue(new ToggleWeapon(weaponSubsystem));
     }
     else{
     // Says if sensor is blocked when the 'A' button is pressed.
-    new JoystickButton(m_driverController, Button.kA.value).onTrue(new CheckSensor(weaponSubsystem));
+    //new JoystickButton(m_driverController, Button.kA.value).onTrue(new CheckSensor(weaponSubsystem));
     //Gives tilt angle when the 'B' button is pressed.
-    new JoystickButton(m_driverController, Button.kB.value).onTrue(new CheckTilt(m_robotDrive));
+    //new JoystickButton(m_driverController, Button.kB.value).onTrue(new CheckTilt(m_robotDrive));
     // While holding the Y, drive at half speed
     new JoystickButton(m_driverController, Button.kY.value)
         .whileTrue(new HalveDriveSpeed(m_robotDrive));
     //new JoystickButton(m_driverController, )
 
     
-    new JoystickButton(m_weaponController, Button.kRightBumper.value)
-    .onTrue(new OpenWeapon(weaponSubsystem));
+   // new JoystickButton(m_weaponController, Button.kRightBumper.value)
+   // .onTrue(new OpenWeapon(weaponSubsystem));
 
-    new JoystickButton(m_weaponController, Button.kLeftBumper.value)
-    .onTrue(new CloseWeapon(weaponSubsystem));
+    //new JoystickButton(m_weaponController, Button.kLeftBumper.value)
+    //.onTrue(new CloseWeapon(weaponSubsystem));
     }
   }
 

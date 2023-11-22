@@ -1,4 +1,4 @@
-
+/* 
 
 package frc.robot.commands;
 
@@ -18,3 +18,4 @@ public class CheckSensor extends CommandBase {
    @Override
    public boolean isFinished(){return true;}
 }
+*/

@@ -1,4 +1,4 @@
-// Copyright (c) FIRST and other WPILib contributors.
+/*  Copyright (c) FIRST and other WPILib contributors.
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
 
@@ -11,7 +11,7 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
  * A simple command that grabs a hatch with the {@link HatchSubsystem}. Written explicitly for
  * pedagogical purposes. Actual code should inline a command this simple with {@link
  * edu.wpi.first.wpilibj2.command.InstantCommand}.
- */
+ 
 public class CloseWeapon extends CommandBase {
   // The subsystem the command runs on
   private final WeaponSubsystem m_weaponSubsystem;
@@ -33,3 +33,4 @@ public class CloseWeapon extends CommandBase {
     return true;
   }
 }
+*/
